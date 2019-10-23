@@ -11,6 +11,8 @@ define nrpe::command (
   $sudo_user    = 'root',
 ) {
 
+  Package <| tag == 'monitoring-plugins' |> ->
+
   file { "${include_dir}/${title}.cfg":
     ensure  => $ensure,
     content => template('nrpe/command.cfg.erb'),
